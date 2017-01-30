@@ -5,6 +5,8 @@ A collection of interview questions and textbook problems I have encountered whi
 
 Complete with UnitTest and blank exercises
 
+Solutions will be updated over time :)
+
 ## Instructions
 To test your code run the following command in your terminal while in your file's appropriate folder:
 
