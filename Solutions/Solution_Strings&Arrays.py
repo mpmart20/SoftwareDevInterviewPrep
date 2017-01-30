@@ -133,7 +133,7 @@ def isSubstring():
     """
     pass
 
-class  SolutionStringAndArraysTest(unittest.TestCase):
+class  StringAndArraysTest(unittest.TestCase):
 
     def test_q1(self):
         target = "abcd"

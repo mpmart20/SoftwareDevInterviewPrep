@@ -64,7 +64,7 @@ def isSubstring():
     """
     pass
 
-class  crackingTheCodeTest(unittest.TestCase):
+class  StringAndArraysTest(unittest.TestCase):
 
     def test_q1(self):
         target = "abcd"
