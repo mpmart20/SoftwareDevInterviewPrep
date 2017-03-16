@@ -34,6 +34,9 @@ class doublyLinkedList():
     def removeNode(self):
         self.parent = self.child
 
+    def next(self):
+        return self.child
+
 def makeLinkedList(arr):
     root = LinkedList(arr[0])
     curr = root
@@ -117,10 +120,17 @@ class  LinkedListTest(unittest.TestCase):
 
     def test_q1(self):
         arr = [1,2,3,4,5,6,7,1,2,3]
+        print "testing linkedlist"
         root = makeLinkedList(arr)
         while root:
             print root.value
             root = root.child
+        arr = [1,2,3,4,5,6,7,1,2,3]
+        print "testing doublyLinkedList"
+        root = makeDoublyLinkedList(arr)
+        while root:
+            print "value %s | parent %s", (root.value, root.parent)
+            root = root.next()
         pass
 
     def test_q2(self):
