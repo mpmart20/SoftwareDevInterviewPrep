@@ -23,18 +23,34 @@ class doublyLinkedList():
         self.child = None
         self.parent = None
 
-    def appendTo(self, node):
+    def updateChild(self, node):
         self.child  = node
         self.child.parent = self
 
-    def insertInto(self, node):
+    def updateParent(self, node):
         self.parent = node
         self.parent.child = self
 
     def removeNode(self):
         self.parent = self.child
 
+def makeLinkedList(arr):
+    root = LinkedList(arr[0])
+    curr = root
+    for x in arr[1:]:
+        newNode = LinkedList(x)
+        curr.updateChild(newNode)
+        curr = newNode
+    return root
 
+def makeDoublyLinkedList():
+    root = doublyLinkedList(arr[0])
+    curr = root
+    for x in arr[1:]:
+        newNode = doublyLinkedList(x)
+        curr.updateChild(newNode)
+        curr = newNode
+    return root
 
 
 def removeDuplicates(head):
@@ -47,7 +63,7 @@ def removeDuplicates(head):
             if p1.val == p2.val:
                 p1.removeNode(p2)
             p2 = p2.next()
-        p1.next() = p1.next()
+        p1 = p1.next()
     return head
 
 
@@ -100,6 +116,11 @@ def palindromeCheck(head):
 class  LinkedListTest(unittest.TestCase):
 
     def test_q1(self):
+        arr = [1,2,3,4,5,6,7,1,2,3]
+        root = makeLinkedList(arr)
+        while root:
+            print root.value
+            root = root.child
         pass
 
     def test_q2(self):
