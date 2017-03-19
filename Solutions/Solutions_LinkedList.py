@@ -19,7 +19,7 @@ class LinkedList():
 
 class doublyLinkedList():
     def __init__(self, val):
-        self.val = val
+        self.value = val
         self.child = None
         self.parent = None
 
@@ -46,7 +46,7 @@ def makeLinkedList(arr):
         curr = newNode
     return root
 
-def makeDoublyLinkedList():
+def makeDoublyLinkedList(arr):
     root = doublyLinkedList(arr[0])
     curr = root
     for x in arr[1:]:
@@ -58,7 +58,8 @@ def makeDoublyLinkedList():
 
 def removeDuplicates(head):
     """
-    Implement an algorith to remove duplicates from an unsorted linked LinkedListhow would you solve this problem if a temp buffer was not allowed
+    Implement an algorith to remove duplicates from an unsorted linked LinkedList
+    how would you solve this problem if a temp buffer was not allowed
     """
     p1, p2 = head, head.next()
     while not (p1 == None):
@@ -75,14 +76,17 @@ def findKthLastItem(head, k):
     Implement an algorithm to find the kth to last element of a singly linked List
     """
     p1,p2 = head, head.next()
-    steps = 0
+    steps,kCopy = 0, k
     while not p2 is None:
         steps += 1
         p2 = p2.next()
-    while not steps == k:
+    if k > steps:
+        #subtract one since its 0 index from the right
+        kCopy = k%steps - 1
+    while not steps == kCopy:
         steps -= 1
         p1= p1.next()
-    return p1.val
+    return p1.value
 
 def deleteMiddle(head):
     """
@@ -118,23 +122,39 @@ def palindromeCheck(head):
 
 class  LinkedListTest(unittest.TestCase):
 
-    def test_q1(self):
-        arr = [1,2,3,4,5,6,7,1,2,3]
+    def test_setup(self):
+        arr = [1,"a",3,4,"bc","!.",7,1,2,3]
         print "testing linkedlist"
         root = makeLinkedList(arr)
         while root:
             print root.value
             root = root.child
-        arr = [1,2,3,4,5,6,7,1,2,3]
+        arr = [1,2,3,4,"a",6,"!",1,2,3]
         print "testing doublyLinkedList"
         root = makeDoublyLinkedList(arr)
         while root:
-            print "value %s | parent %s", (root.value, root.parent)
+            print "value:" + str(root.value) +" | parent "+ str(root.parent)
             root = root.next()
         pass
 
-    def test_q2(self):
+    def test_q1(self):
         pass
+
+    def test_q2(self):
+        arr = [1,2,3,4,5,6,7,8,9]
+        root = makeLinkedList(arr)
+        k = 1
+        sol = len(arr) - k - 1
+        self.assertEqual(findKthLastItem(root,k), arr[sol])
+        k = 0
+        sol = len(arr) - k - 1
+        self.assertEqual(findKthLastItem(root,k), arr[sol])
+        k = 9
+        sol = len(arr) - k - 1
+        self.assertEqual(findKthLastItem(root,k), arr[sol])
+        k = len(arr)
+        sol = len(arr) - k - 1
+        self.assertEqual(findKthLastItem(root,k), arr[sol])
 
     def test_q3(self):
         pass
