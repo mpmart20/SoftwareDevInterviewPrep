@@ -3,6 +3,8 @@ import unittest
 def stringIsUnique(targetStr):
     """
     Implement an algorithm to determine if a string has all unique characters
+    time complexity --> O(n)
+    space complexity -->  N
     """
     pass
 
@@ -10,6 +12,9 @@ def stringIsUniqueInPlace(targetStr):
     """
     Implement an algorithm to determine if a string has all unique characters
     Do not use additional data structures
+
+    time complexity --> O(nlogn) + O(N)
+    space complexity --> O(1)
     """
     pass
 
