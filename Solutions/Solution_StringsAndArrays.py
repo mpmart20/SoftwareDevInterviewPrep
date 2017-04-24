@@ -135,7 +135,7 @@ def isSubstring(arg1, arg2):
 
     """
     Dict1 = {}
-    if len(arg1) > len(arg2):
+    if len(arg1) >= len(arg2):
         for x in arg1:
             curr = Dict1.get(x)
             if curr:
@@ -150,19 +150,21 @@ def isSubstring(arg1, arg2):
                 Dict1[y] = curr - 1
         return True
     else:
-        for x in arg2:
-            curr = Dict1.get(x)
-            if curr:
-                Dict1[x] = curr + 1
-            else:
-                Dict1[x] = 1
-        for y in arg1:
-            curr = Dict1.get(y)
-            if (not curr) or (curr == 0):
-                return False
-            else:
-                Dict1[y] = curr - 1
-        return True
+        return False
+    # else:
+    #     for x in arg2:
+    #         curr = Dict1.get(x)
+    #         if curr:
+    #             Dict1[x] = curr + 1
+    #         else:
+    #             Dict1[x] = 1
+    #     for y in arg1:
+    #         curr = Dict1.get(y)
+    #         if (not curr) or (curr == 0):
+    #             return False
+    #         else:
+    #             Dict1[y] = curr - 1
+    #     return True
 
 
 class  StringAndArraysTest(unittest.TestCase):
@@ -260,8 +262,9 @@ class  StringAndArraysTest(unittest.TestCase):
         arg2 = "e"
         self.assertEqual(isSubstring(arg1,arg2), True)
         arg2 = "erbottlewattf"
-        self.assertEqual(isSubstring(arg1,arg2), True)
+        self.assertEqual(isSubstring(arg1,arg2), False)
         arg2 = "1"
         self.assertEqual(isSubstring(arg1,arg2), False)
         arg1 = "1a2bb3cc4dd"
         arg2 = "1a2bb3cc4dd"
+        self.assertEqual(isSubstring(arg1,arg2), True)
