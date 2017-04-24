@@ -7,7 +7,6 @@ def stringIsUnique(targetStr):
     time: 0(n)
     space: 2n
     """
-    #create a set to track what I've seen
     mySet = set()
     for x in targetStr:
         if x in mySet:
@@ -15,16 +14,20 @@ def stringIsUnique(targetStr):
         mySet.add(x)
     return True
 
+
 def stringIsUniqueInPlace(targetStr):
     """
     time: 0(n*(n-1))
     space: n
     """
-    for indice, curr in enumerate(targetStr):
-        for x in targetStr[indice+1:]:
-            if curr == x:
+    #TODO: Sort string
+    #TODO: using two cursors check for duplicates
+    for indice,char in enumerate(targetStr):
+        for curr in targetStr[indice+1:]:
+            if curr == char:
                 return False
     return True
+
 
 def reverseStrInPlace(targetStr):
     """
@@ -124,13 +127,43 @@ def setToZero(matrix):
             matrix[curr][x] = 0
     return matrix
 
-def isSubstring():
+def isSubstring(arg1, arg2):
     """
     assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write the code to check if s2 is a rotation of s1 using only one call to isSubstring
     waterbottle
     erbottlewat
+
     """
-    pass
+    Dict1 = {}
+    if len(arg1) > len(arg2):
+        for x in arg1:
+            curr = Dict1.get(x)
+            if curr:
+                Dict1[x] = curr + 1
+            else:
+                Dict1[x] = 1
+        for y in arg2:
+            curr = Dict1.get(y)
+            if (not curr) or (curr == 0):
+                return False
+            else:
+                Dict1[y] = curr - 1
+        return True
+    else:
+        for x in arg2:
+            curr = Dict1.get(x)
+            if curr:
+                Dict1[x] = curr + 1
+            else:
+                Dict1[x] = 1
+        for y in arg1:
+            curr = Dict1.get(y)
+            if (not curr) or (curr == 0):
+                return False
+            else:
+                Dict1[y] = curr - 1
+        return True
+
 
 class  StringAndArraysTest(unittest.TestCase):
 
@@ -217,4 +250,18 @@ class  StringAndArraysTest(unittest.TestCase):
         self.assertEqual(setToZero(m),n)
 
     def test_q8(self):
-        pass
+        arg1 = "waterbottle"
+        arg2 = "erbottlewat"
+        self.assertEqual(isSubstring(arg1,arg2), True)
+        arg2 = "erbottwat"
+        self.assertEqual(isSubstring(arg1,arg2), True)
+        arg2 = "otlwt"
+        self.assertEqual(isSubstring(arg1,arg2), True)
+        arg2 = "e"
+        self.assertEqual(isSubstring(arg1,arg2), True)
+        arg2 = "erbottlewattf"
+        self.assertEqual(isSubstring(arg1,arg2), True)
+        arg2 = "1"
+        self.assertEqual(isSubstring(arg1,arg2), False)
+        arg1 = "1a2bb3cc4dd"
+        arg2 = "1a2bb3cc4dd"
