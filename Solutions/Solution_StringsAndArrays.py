@@ -151,20 +151,7 @@ def isSubstring(arg1, arg2):
         return True
     else:
         return False
-    # else:
-    #     for x in arg2:
-    #         curr = Dict1.get(x)
-    #         if curr:
-    #             Dict1[x] = curr + 1
-    #         else:
-    #             Dict1[x] = 1
-    #     for y in arg1:
-    #         curr = Dict1.get(y)
-    #         if (not curr) or (curr == 0):
-    #             return False
-    #         else:
-    #             Dict1[y] = curr - 1
-    #     return True
+
 
 
 class  StringAndArraysTest(unittest.TestCase):
